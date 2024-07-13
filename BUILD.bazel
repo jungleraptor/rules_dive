@@ -1,1 +1,1 @@
-exports_files(["dive.sh"])
+exports_files(["dive.sh.tpl"])

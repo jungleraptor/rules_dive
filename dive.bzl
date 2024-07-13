@@ -5,7 +5,7 @@ def _dive_tar_impl(ctx):
     exe = ctx.actions.declare_file(ctx.label.name + ".sh")
 
     ctx.actions.expand_template(
-        template = ctx.file._run_template,
+        template = ctx.file._dive_template,
         output = exe,
         substitutions = {
             "{{dive_bin}}": dive_bin.path,
@@ -31,11 +31,14 @@ dive_tar = rule(
             default = "@dive_x86_64",
             allow_single_file = True,
         ),
-        "_run_template": attr.label(
-            default = Label("//:dive.sh"),
+        "_dive_template": attr.label(
+            default = Label("//:dive.sh.tpl"),
             allow_single_file = True,
         ),
     },
+    doc = """
+Analyze an OCI tar archive with dive
+""",
     executable = True,
 )
 
