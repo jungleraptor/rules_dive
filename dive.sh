@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 
-dive docker-archive://$1
+readonly DIVE_BIN="{{dive_bin}}"
+readonly TARBALL="{{tarball}}"
+
+"$DIVE_BIN" "docker-archive://$TARBALL"
